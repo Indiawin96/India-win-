@@ -1,0 +1,61 @@
+India-win/
+├── index.html
+├── login.html
+├── dashboard.html
+├── style.css
+├── app.js
+└── README.md
+<!DOCTYPE html>
+<html>
+<head>
+  <title>India Win</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Welcome to India Win</h1>
+  <a href="login.html">Login / Register</a>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - India Win</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Hi, <span id="user-name"></span></h2>
+  <p>Wallet: ₹<span id="wallet"></span></p>
+  <button onclick="spin()">🎡 Spin to Win</button>
+
+  <script src="app.js"></script>
+</body>
+</html>body {
+  font-family: Arial;
+  text-align: center;
+  padding: 20px;
+}
+
+input, button {function login() {
+  const username = document.getElementById("username").value;
+  localStorage.setItem("user", username);
+  localStorage.setItem("wallet", 100); // default ₹100
+  window.location.href = "dashboard.html";
+}
+
+function spin() {
+  let amount = Math.floor(Math.random() * 100);
+  let current = parseInt(localStorage.getItem("wallet") || 0);
+  current += amount;
+  localStorage.setItem("wallet", current);
+  alert("You won ₹" + amount + "!");
+  document.getElementById("wallet").innerText = current;
+}
+
+window.onload = function () {
+  if (document.getElementById("user-name")) {
+    document.getElementById("user-name").innerText = localStorage.getItem("user") || "Guest";
+    document.getElementById("wallet").innerText = localStorage.getItem("wallet") || "0";
+  }
+}
+  padding: 10px;
+  margin: 10px;
+}
